@@ -1,0 +1,199 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/developers":
+    get:
+      summary: list developers
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create developer
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: true
+                year_founded:
+                  type: date
+                  nullable: true
+  "/developers/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show developer
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update developer
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update developer
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: true
+                year_founded:
+                  type: date
+                  nullable: true
+    delete:
+      summary: delete developer
+      responses:
+        '200':
+          description: successful
+  "/videogames":
+    get:
+      summary: list videogames
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create videogame
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  nullable: true
+                developer:
+                  type: string
+                  nullable: true
+                publisher:
+                  type: string
+                  nullable: true
+                release_date:
+                  type: date
+                  nullable: true
+                genre:
+                  type: string
+                  nullable: true
+  "/videogames/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: update videogame
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  nullable: true
+                developer:
+                  type: string
+                  nullable: true
+                publisher:
+                  type: string
+                  nullable: true
+                release_date:
+                  type: date
+                  nullable: true
+                genre:
+                  type: string
+                  nullable: true
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  schemas:
+    videogame:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        title:
+          type: string
+          nullable: true
+        developer:
+          type: string
+          nullable: true
+        publisher:
+          type: string
+          nullable: true
+        release_date:
+          type: date
+          nullable: true
+        genre:
+          type: string
+          nullable: true
+        created_at:
+          type: datetime
+          nullable: false
+        updated_at:
+          type: datetime
+          nullable: false
+      required:
+      - id
+      - created_at
+      - updated_at
+    developer:
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: false
+        name:
+          type: string
+          nullable: true
+        year_founded:
+          type: date
+          nullable: true
+        created_at:
+          type: datetime
+          nullable: false
+        updated_at:
+          type: datetime
+          nullable: false
+      required:
+      - id
+      - created_at
+      - updated_at

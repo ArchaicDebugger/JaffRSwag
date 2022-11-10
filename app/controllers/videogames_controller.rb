@@ -13,7 +13,7 @@ class VideogamesController < ApplicationController
     @videogame = Videogame.new
   end
 
-  def edit
+  def edit()
     @videogame = Videogame.find(params[:id])
   end
 
