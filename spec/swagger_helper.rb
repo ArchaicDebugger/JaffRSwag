@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+ #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
 def model_to_schema model
   {
     type: :object,
@@ -12,6 +13,7 @@ def model_to_schema model
   }
 end
 
+ #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
 def model_to_post_schema model
   columns_to_omit = %w[id created_at updated_at]
   {
@@ -29,11 +31,13 @@ RSpec.configure do |config|
   # to ensure that it's configured to serve Swagger from the same folder
   config.swagger_root = Rails.root.join('swagger').to_s
 
+   #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
   models_to_swaggerize = [
     Videogame,
     Developer
   ]
 
+   #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
   swaggerize_schemas = models_to_swaggerize.each_with_object({}) do |model, hash|
     hash[model.name.downcase] = model_to_schema(model)
   end
@@ -65,6 +69,7 @@ RSpec.configure do |config|
         }
       ],
       components: {
+         #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
         schemas: swaggerize_schemas
       }
     }

@@ -2,6 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'developers', type: :request do
 
+  #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
   model = Developer
 
   path '/developers' do
@@ -23,6 +24,7 @@ RSpec.describe 'developers', type: :request do
     post('create developer') do
       response(200, 'successful') do
 
+         #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
         consumes 'application/json'
         parameter name: :developer, in: :body, schema: model_to_post_schema(model)
 
@@ -76,6 +78,7 @@ RSpec.describe 'developers', type: :request do
       response(200, 'successful') do
         let(:id) { '123' }
 
+         #custom development, might be transferrable to a helper that checks a specific controller and returns the schema
         consumes 'application/json'
         parameter name: :developer, in: :body, schema: model_to_post_schema(model)
 
